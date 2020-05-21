@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/layout_margin">
+
+        <ImageView
+            android:id="@+id/img_team_badge"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/txt_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_team_badge"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/txt_stadium_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_team_name"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/btn_team_details"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_stadium_name"
+            android:layout_centerHorizontal="true"
+            android:text="@string/details" />
+
+    </RelativeLayout>
+</layout>
