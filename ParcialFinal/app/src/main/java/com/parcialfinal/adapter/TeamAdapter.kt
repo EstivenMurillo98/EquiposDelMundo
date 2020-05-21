@@ -1,13 +1,12 @@
 package com.parcialfinal.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.parcialfinal.R
+import com.parcialfinal.TeamItemFragmentDirections
 import com.parcialfinal.databinding.TeamItemLayoutBinding
 import com.parcialfinal.model.SoccerTeam
 import com.squareup.picasso.Picasso
@@ -32,12 +31,10 @@ class TeamAdapter(val teamList: List<SoccerTeam>) : RecyclerView.Adapter<TeamAda
         fun bind(team: SoccerTeam){
             binding.txtTeamName.text = "Name: "+team.teamName
             binding.txtStadiumName.text = "Stadium: " + team.stadiumName
-            Picasso.get().load(team.badgeUrl).into(binding.imgTeamBadge)
+            Picasso.get().load(team.badgeUrl.toString()).into(binding.imgTeamBadge)
             binding.btnTeamDetails.setOnClickListener {
-                Toast.makeText(binding.root.context, team.teamName, Toast.LENGTH_LONG).show()
-            }
-            binding.btnTeamDetails.setOnClickListener {
-                it.findNavController().navigate(R.id.action_teamItemFragment_to_teamInfoFragment)
+                it.findNavController().navigate(TeamItemFragmentDirections.actionTeamItemFragmentToTeamInfoFragment
+                    (team.teamName, team.teamDescription, team.badgeUrl, team.teamJersey))
             }
         }
     }

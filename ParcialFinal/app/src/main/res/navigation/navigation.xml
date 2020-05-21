@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/teamItemFragment"
         android:name="com.parcialfinal.TeamItemFragment"
-        android:label="TeamItemFragment" >
+        android:label="@string/equiposdelmundo">
         <action
             android:id="@+id/action_teamItemFragment_to_teamInfoFragment"
             app:destination="@id/teamInfoFragment" />
@@ -15,5 +15,26 @@
     <fragment
         android:id="@+id/teamInfoFragment"
         android:name="com.parcialfinal.TeamInfoFragment"
-        android:label="TeamInfoFragment" />
+        android:label="@string/detalleequipo" >
+        <action
+            android:id="@+id/action_teamInfoFragment_to_teamItemFragment"
+            app:destination="@id/teamItemFragment"
+            app:popUpTo="@id/teamItemFragment" />
+        <argument
+            android:name="teamName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="teamDescription"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="badgeUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="teamJersey"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
