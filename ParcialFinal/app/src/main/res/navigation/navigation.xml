@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/teamItemFragment">
+    <fragment
+        android:id="@+id/teamItemFragment"
+        android:name="com.parcialfinal.TeamItemFragment"
+        android:label="TeamItemFragment" >
+        <action
+            android:id="@+id/action_teamItemFragment_to_teamInfoFragment"
+            app:destination="@id/teamInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamInfoFragment"
+        android:name="com.parcialfinal.TeamInfoFragment"
+        android:label="TeamInfoFragment" />
+</navigation>

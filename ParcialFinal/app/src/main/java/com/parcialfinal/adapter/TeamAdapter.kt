@@ -1,9 +1,11 @@
 package com.parcialfinal.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.parcialfinal.R
 import com.parcialfinal.databinding.TeamItemLayoutBinding
@@ -33,6 +35,9 @@ class TeamAdapter(val teamList: List<SoccerTeam>) : RecyclerView.Adapter<TeamAda
             Picasso.get().load(team.badgeUrl).into(binding.imgTeamBadge)
             binding.btnTeamDetails.setOnClickListener {
                 Toast.makeText(binding.root.context, team.teamName, Toast.LENGTH_LONG).show()
+            }
+            binding.btnTeamDetails.setOnClickListener {
+                it.findNavController().navigate(R.id.action_teamItemFragment_to_teamInfoFragment)
             }
         }
     }

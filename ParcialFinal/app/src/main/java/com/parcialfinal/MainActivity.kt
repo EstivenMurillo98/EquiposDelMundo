@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.parcialfinal.adapter.TeamAdapter
 import com.parcialfinal.databinding.ActivityMainBinding
@@ -17,28 +20,21 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    lateinit var drawerLayout : DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        @Suppress("UNUSED_VARIABLE")
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        drawerLayout = binding.drawerLayout
 
-        val retrofit = RetrofitInstance.getRetrofitInstance()
-        val request = retrofit.create(SoccerService::class.java)
-        val call = request.getAllTeams()
+        val navController = this.findNavController(R.id.navHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
-        call.enqueue(object : Callback<TeamList> {
-            override fun onFailure(call: Call<TeamList>, t: Throwable) {
-                Toast.makeText(applicationContext, "A ocurrido un error ${t.message}", Toast.LENGTH_LONG).show()
-            }
+    }
 
-            override fun onResponse(call: Call<TeamList>, response: Response<TeamList>) {
-                binding.recyclerView.apply {
-                    setHasFixedSize(true)
-                    adapter = TeamAdapter(response.body()!!.teams.take(10))
-                    layoutManager = LinearLayoutManager(this@MainActivity)
-                }
-            }
-        })
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.navHostFragment)
+        return NavigationUI.navigateUp(navController, drawerLayout)
     }
 }
