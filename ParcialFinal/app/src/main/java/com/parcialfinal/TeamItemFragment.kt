@@ -36,7 +36,7 @@ class TeamItemFragment : Fragment() {
             override fun onResponse(call: Call<TeamList>, response: Response<TeamList>) {
                 binding.recyclerView.apply {
                     setHasFixedSize(true)
-                    adapter = TeamAdapter(response.body()!!.teams.take(10))
+                    adapter = TeamAdapter(response.body()!!.teams.take(20))
                     layoutManager = LinearLayoutManager(context)
                 }
             }
